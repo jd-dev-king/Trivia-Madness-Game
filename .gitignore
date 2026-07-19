@@ -1,0 +1,43 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Maven
+target/
+
+# Compiled Java files
+*.class
+
+# macOS
+.DS_Store
+
+# Local SQLite database
+data/*.db
+data/*.db-journal
+data/*.db-shm
+data/*.db-wal
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Environment files
+.env
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
