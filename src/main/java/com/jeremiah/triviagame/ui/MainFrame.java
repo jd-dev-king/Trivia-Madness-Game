@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -59,10 +60,10 @@ public class MainFrame extends JFrame {
                 JFrame.DO_NOTHING_ON_CLOSE
         );
 
-        setSize(1000, 720);
+        setSize(1200, 720);
 
         setMinimumSize(
-                new Dimension(800, 620)
+                new Dimension(900, 620)
         );
 
         setLocationRelativeTo(null);
@@ -291,143 +292,206 @@ public class MainFrame extends JFrame {
         }
     }
 
-    private void showResultsScreen(
-            int score,
-            int totalQuestions
-    ) {
-        JPanel resultsPanel = new JPanel(
-                new BorderLayout(20, 20)
-        );
+   private void showResultsScreen(
+        int score,
+        int totalQuestions
+) {
+    JPanel resultsPanel = new JPanel(
+            new BorderLayout(20, 20)
+    );
 
-        resultsPanel.setBorder(
-                BorderFactory.createEmptyBorder(
-                        50,
-                        70,
-                        50,
-                        70
-                )
-        );
+    resultsPanel.setBackground(Theme.BACKGROUND);
 
-        double percentage =
-                totalQuestions == 0
-                        ? 0
-                        : score * 100.0
-                        / totalQuestions;
+    resultsPanel.setBorder(
+            BorderFactory.createEmptyBorder(
+                    45,
+                    70,
+                    45,
+                    70
+            )
+    );
 
-        String performanceMessage =
-                getPerformanceMessage(percentage);
+    double percentage =
+            totalQuestions == 0
+                    ? 0
+                    : score * 100.0
+                    / totalQuestions;
 
-        String playerName =
-                currentSettings == null
-                        ? "Player"
-                        : currentSettings.getPlayerName();
+    String performanceMessage =
+            getPerformanceMessage(percentage);
 
-        String message = """
-                <html>
-                    <div style='text-align:center;'>
-                        <h1>Game Complete!</h1>
-                        <h2>%s</h2>
-                        <p>You scored %d out of %d.</p>
-                        <p>Final percentage: %.1f%%</p>
-                        <h3>%s</h3>
-                        <p>Your score was saved.</p>
-                    </div>
-                </html>
-                """.formatted(
-                playerName,
-                score,
-                totalQuestions,
-                percentage,
-                performanceMessage
-        );
+    String playerName =
+            currentSettings == null
+                    ? "Player"
+                    : currentSettings.getPlayerName();
 
-        JLabel resultsLabel = new JLabel(
-                message,
-                SwingConstants.CENTER
-        );
+    RoundedPanel resultsCard = new RoundedPanel(
+            new BorderLayout(20, 20),
+            34
+    );
 
-        resultsLabel.setFont(
-                new Font(
-                        "SansSerif",
-                        Font.PLAIN,
-                        20
-                )
-        );
+    resultsCard.setBackground(Theme.PANEL);
 
-        JButton playAgainButton =
-                new JButton("Play Again");
+    resultsCard.setBorder(
+            BorderFactory.createEmptyBorder(
+                    40,
+                    55,
+                    40,
+                    55
+            )
+    );
 
-        JButton leaderboardButton =
-                new JButton("View Scores");
+    JLabel titleLabel = new JLabel(
+            "GAME COMPLETE",
+            SwingConstants.CENTER
+    );
 
-        JButton homeButton =
-                new JButton("Change Player");
+    titleLabel.setFont(Theme.TITLE_FONT);
+    titleLabel.setForeground(Theme.ACCENT);
 
-        playAgainButton.setFont(
-                new Font(
-                        "SansSerif",
-                        Font.BOLD,
-                        16
-                )
-        );
+    JLabel playerLabel = new JLabel(
+            playerName.toUpperCase(),
+            SwingConstants.CENTER
+    );
 
-        leaderboardButton.setFont(
-                new Font(
-                        "SansSerif",
-                        Font.BOLD,
-                        16
-                )
-        );
+    playerLabel.setFont(Theme.HEADING_FONT);
+    playerLabel.setForeground(Theme.TEXT);
 
-        homeButton.setFont(
-                new Font(
-                        "SansSerif",
-                        Font.BOLD,
-                        16
-                )
-        );
+    JLabel scoreLabel = new JLabel(
+            score + " / " + totalQuestions,
+            SwingConstants.CENTER
+    );
 
-        playAgainButton.addActionListener(event -> {
-            if (currentSettings != null) {
-                showCategoryScreen(
-                        currentSettings.getPlayerName()
-                );
-            } else {
-                showWelcomeScreen();
-            }
-        });
+    scoreLabel.setFont(
+            new Font(
+                    "SansSerif",
+                    Font.BOLD,
+                    54
+            )
+    );
 
-        leaderboardButton.addActionListener(event ->
-                showLeaderboardScreen()
-        );
+    scoreLabel.setForeground(
+            getPerformanceColor(percentage)
+    );
 
-        homeButton.addActionListener(event ->
-                showWelcomeScreen()
-        );
+    JLabel percentageLabel = new JLabel(
+            String.format("%.1f%%", percentage),
+            SwingConstants.CENTER
+    );
 
-        JPanel buttonPanel = new JPanel(
-                new GridLayout(1, 3, 15, 0)
-        );
+    percentageLabel.setFont(
+            new Font(
+                    "SansSerif",
+                    Font.BOLD,
+                    28
+            )
+    );
 
-        buttonPanel.add(playAgainButton);
-        buttonPanel.add(leaderboardButton);
-        buttonPanel.add(homeButton);
+    percentageLabel.setForeground(Theme.TEXT);
 
-        resultsPanel.add(
-                resultsLabel,
-                BorderLayout.CENTER
-        );
+    JLabel messageLabel = new JLabel(
+            performanceMessage,
+            SwingConstants.CENTER
+    );
 
-        resultsPanel.add(
-                buttonPanel,
-                BorderLayout.SOUTH
-        );
+    messageLabel.setFont(Theme.HEADING_FONT);
+    messageLabel.setForeground(
+            getPerformanceColor(percentage)
+    );
 
-        replaceScreen(
-                RESULTS_SCREEN,
-                resultsPanel
-        );
-    }
+    JLabel savedLabel = new JLabel(
+            "Your score was saved to the leaderboard.",
+            SwingConstants.CENTER
+    );
+
+    savedLabel.setFont(Theme.BODY_FONT);
+    savedLabel.setForeground(Theme.MUTED_TEXT);
+
+    JPanel summaryPanel = new JPanel(
+            new GridLayout(5, 1, 0, 12)
+    );
+
+    summaryPanel.setOpaque(false);
+    summaryPanel.add(playerLabel);
+    summaryPanel.add(scoreLabel);
+    summaryPanel.add(percentageLabel);
+    summaryPanel.add(messageLabel);
+    summaryPanel.add(savedLabel);
+
+    resultsCard.add(
+            titleLabel,
+            BorderLayout.NORTH
+    );
+
+    resultsCard.add(
+            summaryPanel,
+            BorderLayout.CENTER
+    );
+
+    RoundedButton playAgainButton =
+            new RoundedButton("PLAY AGAIN");
+
+    RoundedButton leaderboardButton =
+            new RoundedButton(
+                    "VIEW SCORES",
+                    Theme.PANEL_LIGHT,
+                    Theme.PRIMARY,
+                    Theme.ACCENT
+            );
+
+    RoundedButton homeButton =
+            new RoundedButton(
+                    "CHANGE PLAYER",
+                    Theme.PANEL_LIGHT,
+                    Theme.PRIMARY,
+                    Theme.ACCENT
+            );
+
+    playAgainButton.addActionListener(event -> {
+        if (currentSettings != null) {
+            showCategoryScreen(
+                    currentSettings.getPlayerName()
+            );
+        } else {
+            showWelcomeScreen();
+        }
+    });
+
+    leaderboardButton.addActionListener(event ->
+            showLeaderboardScreen()
+    );
+
+    homeButton.addActionListener(event ->
+            showWelcomeScreen()
+    );
+
+    JPanel buttonPanel = new JPanel(
+            new GridLayout(1, 3, 15, 0)
+    );
+
+    buttonPanel.setOpaque(false);
+    buttonPanel.add(playAgainButton);
+    buttonPanel.add(leaderboardButton);
+    buttonPanel.add(homeButton);
+
+    JPanel wrapper = new JPanel(
+            new BorderLayout(0, 25)
+    );
+
+    wrapper.setOpaque(false);
+    wrapper.add(resultsCard, BorderLayout.CENTER);
+    wrapper.add(buttonPanel, BorderLayout.SOUTH);
+
+    resultsPanel.add(
+            wrapper,
+            BorderLayout.CENTER
+    );
+
+    replaceScreen(
+            RESULTS_SCREEN,
+            resultsPanel
+    );
+}
 
     private String getPerformanceMessage(
             double percentage
@@ -450,6 +514,20 @@ public class MainFrame extends JFrame {
 
         return "Try again and improve your score!";
     }
+
+    private Color getPerformanceColor(
+        double percentage
+) {
+    if (percentage >= 75) {
+        return Theme.SUCCESS;
+    }
+
+    if (percentage >= 40) {
+        return Theme.WARNING;
+    }
+
+    return Theme.ERROR;
+}
 
     private void showLeaderboardScreen() {
         try {
