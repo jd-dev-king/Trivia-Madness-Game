@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trivia Madness is a Java Swing trivia game with Open Trivia DB integration, SQLite score persistence, and a polished desktop GUI.">
+  <title>Trivia Madness Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">Trivia Madness</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#architecture">Architecture</a>
+      <a class="nav-button" href="https://github.com/jd-dev-king/Trivia-Madness-Game">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">JAVA DESKTOP APPLICATION</p>
+        <h1>Fast questions.<br><span>Persistent scores.</span><br>Serious trivia.</h1>
+        <p class="hero-text">
+          A modern Java Swing trivia game powered by Open Trivia DB, with configurable gameplay,
+          a visual countdown timer, and an SQLite leaderboard that preserves results between sessions.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/jd-dev-king/Trivia-Madness-Game">View Repository</a>
+          <a class="button secondary" href="#screens">View Screens</a>
+        </div>
+        <div class="tech-row">
+          <span>Java</span><span>Swing</span><span>SQLite</span><span>Maven</span><span>REST API</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="glow"></div>
+        <img src="images/trivia-hero.png" alt="Trivia Madness game hero artwork">
+      </div>
+    </section>
+
+    <section class="stats">
+      <article><strong>17+</strong><span>Trivia categories</span></article>
+      <article><strong>5–30</strong><span>Questions per game</span></article>
+      <article><strong>10–60s</strong><span>Timer control</span></article>
+      <article><strong>SQLite</strong><span>Persistent scoring</span></article>
+    </section>
+
+    <section id="features" class="section">
+      <p class="eyebrow">FEATURE SET</p>
+      <h2>Built as a complete desktop experience</h2>
+      <div class="feature-grid">
+        <article class="card">
+          <span class="icon">01</span>
+          <h3>Live trivia API</h3>
+          <p>Downloads real multiple-choice questions from Open Trivia DB and safely decodes special characters.</p>
+        </article>
+        <article class="card">
+          <span class="icon">02</span>
+          <h3>Configurable gameplay</h3>
+          <p>Players select multiple categories, difficulty, question count, and time allowed for every question.</p>
+        </article>
+        <article class="card">
+          <span class="icon">03</span>
+          <h3>Visual feedback</h3>
+          <p>Rounded answer controls, color-coded results, and a timer bar that changes as time runs out.</p>
+        </article>
+        <article class="card">
+          <span class="icon">04</span>
+          <h3>Persistent leaderboard</h3>
+          <p>SQLite stores player scores, percentages, categories, difficulty, and completion timestamps.</p>
+        </article>
+        <article class="card">
+          <span class="icon">05</span>
+          <h3>Reliable desktop workflow</h3>
+          <p>Background API loading keeps the interface responsive, while errors are surfaced through clear dialogs.</p>
+        </article>
+        <article class="card">
+          <span class="icon">06</span>
+          <h3>Reusable UI system</h3>
+          <p>A centralized theme and reusable rounded Swing components create a consistent visual identity.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="screens" class="section">
+      <p class="eyebrow">APPLICATION TOUR</p>
+      <h2>From setup to final score</h2>
+      <div class="gallery">
+        <figure><img src="images/welcome-screen.png" alt="Welcome screen"><figcaption>Hero welcome screen</figcaption></figure>
+        <figure><img src="images/category-selection.png" alt="Category selection"><figcaption>Multi-category setup</figcaption></figure>
+        <figure><img src="images/question-screen.png" alt="Question screen"><figcaption>Timed gameplay</figcaption></figure>
+        <figure><img src="images/results-screen.png" alt="Results screen"><figcaption>Performance summary</figcaption></figure>
+        <figure><img src="images/leaderboard.png" alt="Leaderboard"><figcaption>Persistent leaderboard</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="architecture" class="section architecture">
+      <div>
+        <p class="eyebrow">ARCHITECTURE</p>
+        <h2>Clear separation of responsibilities</h2>
+        <p>
+          The project separates API communication, database access, data models, and Swing screens.
+          This keeps the application easier to test, extend, and maintain.
+        </p>
+      </div>
+      <div class="architecture-list">
+        <div><strong>API</strong><span>HTTP requests and JSON decoding</span></div>
+        <div><strong>Database</strong><span>SQLite initialization and score queries</span></div>
+        <div><strong>Models</strong><span>Questions, categories, settings, and scores</span></div>
+        <div><strong>UI</strong><span>Card-based Swing screens and themed controls</span></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <p class="eyebrow">SOURCE CODE</p>
+      <h2>Explore the complete Java project</h2>
+      <p>Review the architecture, run the game locally, or use the project as a foundation for your own desktop application.</p>
+      <a class="button primary" href="https://github.com/jd-dev-king/Trivia-Madness-Game">Open on GitHub</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>Trivia Madness Game</span>
+    <span>Built by Jeremiah Lupton</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
