@@ -4,7 +4,6 @@ import com.jeremiah.triviagame.model.GameSettings;
 import com.jeremiah.triviagame.model.Question;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -12,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -19,24 +19,6 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class GamePanel extends JPanel {
-
-    private static final Color DEFAULT_BUTTON_COLOR =
-            new Color(238, 238, 238);
-
-    private static final Color CORRECT_COLOR =
-            new Color(76, 175, 80);
-
-    private static final Color INCORRECT_COLOR =
-            new Color(244, 67, 54);
-
-    private static final Color TIMER_SAFE_COLOR =
-            new Color(76, 175, 80);
-
-    private static final Color TIMER_WARNING_COLOR =
-            new Color(255, 193, 7);
-
-    private static final Color TIMER_DANGER_COLOR =
-            new Color(244, 67, 54);
 
     private final GameSettings settings;
     private final List<Question> questions;
@@ -49,9 +31,8 @@ public class GamePanel extends JPanel {
     private final JLabel questionLabel;
     private final JLabel feedbackLabel;
 
-    private final JPanel answersPanel;
-    private final JProgressBar timerProgressBar;
-    private final List<JButton> answerButtons;
+    private JProgressBar timerProgressBar;
+    private final List<RoundedButton> answerButtons;
 
     private Timer countdownTimer;
 
@@ -74,39 +55,101 @@ public class GamePanel extends JPanel {
         answerButtons = new ArrayList<>();
 
         setLayout(new BorderLayout(20, 20));
+        setBackground(Theme.BACKGROUND);
 
         setBorder(
                 BorderFactory.createEmptyBorder(
                         25,
-                        35,
-                        25,
-                        35
+                        40,
+                        30,
+                        40
                 )
         );
 
-        progressLabel = new JLabel();
-        categoryLabel = new JLabel("", SwingConstants.CENTER);
-        scoreLabel = new JLabel();
-        timerLabel = new JLabel("", SwingConstants.RIGHT);
-
-        progressLabel.setFont(
-                new Font("SansSerif", Font.BOLD, 16)
+        progressLabel = createInfoLabel(
+                "",
+                SwingConstants.LEFT
         );
 
-        categoryLabel.setFont(
-                new Font("SansSerif", Font.PLAIN, 16)
+        categoryLabel = createInfoLabel(
+                "",
+                SwingConstants.CENTER
         );
 
-        scoreLabel.setFont(
-                new Font("SansSerif", Font.BOLD, 16)
+        scoreLabel = createInfoLabel(
+                "",
+                SwingConstants.CENTER
         );
 
-        timerLabel.setFont(
-                new Font("SansSerif", Font.BOLD, 18)
+        timerLabel = createInfoLabel(
+                "",
+                SwingConstants.RIGHT
         );
 
-        JPanel informationPanel =
-                new JPanel(new GridLayout(1, 4, 15, 0));
+        add(createTopPanel(), BorderLayout.NORTH);
+
+        questionLabel = new JLabel(
+                "",
+                SwingConstants.CENTER
+        );
+
+        questionLabel.setFont(
+                new Font("SansSerif", Font.BOLD, 24)
+        );
+
+        questionLabel.setForeground(Theme.TEXT);
+
+        feedbackLabel = new JLabel(
+                " ",
+                SwingConstants.CENTER
+        );
+
+        feedbackLabel.setFont(Theme.BUTTON_FONT);
+        feedbackLabel.setForeground(Theme.MUTED_TEXT);
+
+        add(createQuestionArea(), BorderLayout.CENTER);
+        add(createAnswerArea(), BorderLayout.SOUTH);
+
+        displayQuestion();
+    }
+
+    private JLabel createInfoLabel(
+            String text,
+            int alignment
+    ) {
+        JLabel label = new JLabel(
+                text,
+                alignment
+        );
+
+        label.setFont(Theme.BUTTON_FONT);
+        label.setForeground(Theme.TEXT);
+
+        return label;
+    }
+
+    private JPanel createTopPanel() {
+        RoundedPanel infoCard = new RoundedPanel(
+                new BorderLayout(0, 14),
+                24
+        );
+
+        infoCard.setBackground(Theme.PANEL);
+
+        infoCard.setBorder(
+                BorderFactory.createEmptyBorder(
+                        18,
+                        20,
+                        18,
+                        20
+                )
+        );
+
+        JPanel informationPanel = new JPanel(
+                new GridLayout(1, 4, 15, 0)
+        );
+
+        informationPanel.setOpaque(false);
 
         informationPanel.add(progressLabel);
         informationPanel.add(categoryLabel);
@@ -123,89 +166,127 @@ public class GamePanel extends JPanel {
         );
 
         timerProgressBar.setStringPainted(true);
-        timerProgressBar.setForeground(TIMER_SAFE_COLOR);
+        timerProgressBar.setForeground(Theme.SUCCESS);
+        timerProgressBar.setBackground(Theme.PANEL_LIGHT);
+        timerProgressBar.setBorderPainted(false);
 
-        JPanel topPanel =
-                new JPanel(new BorderLayout(0, 12));
+        timerProgressBar.setPreferredSize(
+                new Dimension(0, 24)
+        );
 
-        topPanel.add(
+        infoCard.add(
                 informationPanel,
                 BorderLayout.NORTH
         );
 
-        topPanel.add(
+        infoCard.add(
                 timerProgressBar,
                 BorderLayout.SOUTH
         );
 
-        add(topPanel, BorderLayout.NORTH);
+        return infoCard;
+    }
 
-        questionLabel = new JLabel(
-                "",
-                SwingConstants.CENTER
+    private JPanel createQuestionArea() {
+        RoundedPanel questionCard = new RoundedPanel(
+                new BorderLayout(0, 20),
+                30
         );
 
-        questionLabel.setFont(
-                new Font("SansSerif", Font.BOLD, 23)
-        );
+        questionCard.setBackground(Theme.PANEL);
 
-        questionLabel.setBorder(
+        questionCard.setBorder(
                 BorderFactory.createEmptyBorder(
-                        25,
-                        20,
-                        15,
-                        20
+                        35,
+                        40,
+                        30,
+                        40
                 )
         );
 
-        feedbackLabel = new JLabel(
-                " ",
+        JLabel questionHeader = new JLabel(
+                "QUESTION",
                 SwingConstants.CENTER
         );
 
-        feedbackLabel.setFont(
-                new Font("SansSerif", Font.BOLD, 18)
+        questionHeader.setFont(Theme.HEADING_FONT);
+        questionHeader.setForeground(Theme.ACCENT);
+
+        questionCard.add(
+                questionHeader,
+                BorderLayout.NORTH
         );
 
-        JPanel centerPanel =
-                new JPanel(new BorderLayout());
-
-        centerPanel.add(
+        questionCard.add(
                 questionLabel,
                 BorderLayout.CENTER
         );
 
-        centerPanel.add(
+        questionCard.add(
                 feedbackLabel,
                 BorderLayout.SOUTH
         );
 
-        add(centerPanel, BorderLayout.CENTER);
+        JPanel wrapper = new JPanel(
+                new BorderLayout()
+        );
 
-        answersPanel =
-                new JPanel(new GridLayout(2, 2, 15, 15));
+        wrapper.setOpaque(false);
+
+        wrapper.setBorder(
+                BorderFactory.createEmptyBorder(
+                        10,
+                        0,
+                        10,
+                        0
+                )
+        );
+
+        wrapper.add(
+                questionCard,
+                BorderLayout.CENTER
+        );
+
+        return wrapper;
+    }
+
+    private JPanel createAnswerArea() {
+        JPanel answerGrid = new JPanel(
+                new GridLayout(2, 2, 15, 15)
+        );
+
+        answerGrid.setOpaque(false);
 
         for (int index = 0; index < 4; index++) {
-            JButton answerButton = new JButton();
+            RoundedButton answerButton =
+                    new RoundedButton(
+                            "",
+                            Theme.PANEL_LIGHT,
+                            Theme.PRIMARY,
+                            Theme.ACCENT
+                    );
 
             answerButton.setFont(
-                    new Font("SansSerif", Font.PLAIN, 16)
+                    new Font(
+                            "SansSerif",
+                            Font.BOLD,
+                            16
+                    )
             );
 
-            answerButton.setFocusPainted(false);
-            answerButton.setOpaque(true);
+            answerButton.setPreferredSize(
+                    new Dimension(0, 72)
+            );
 
             answerButton.addActionListener(event ->
                     submitAnswer(answerButton)
             );
 
             answerButtons.add(answerButton);
-            answersPanel.add(answerButton);
+            answerGrid.add(answerButton);
         }
 
-        add(answersPanel, BorderLayout.SOUTH);
-
-        displayQuestion();
+        return answerGrid;
     }
 
     private void displayQuestion() {
@@ -215,15 +296,19 @@ public class GamePanel extends JPanel {
         }
 
         answerSubmitted = false;
+
         feedbackLabel.setText(" ");
+        feedbackLabel.setForeground(
+                Theme.MUTED_TEXT
+        );
 
         Question currentQuestion =
                 questions.get(currentQuestionIndex);
 
         progressLabel.setText(
-                "Question "
+                "QUESTION "
                         + (currentQuestionIndex + 1)
-                        + " of "
+                        + " / "
                         + questions.size()
         );
 
@@ -232,7 +317,7 @@ public class GamePanel extends JPanel {
         );
 
         scoreLabel.setText(
-                "Score: " + score
+                "SCORE: " + score
         );
 
         questionLabel.setText(
@@ -245,13 +330,15 @@ public class GamePanel extends JPanel {
         List<String> answers =
                 currentQuestion.getAnswers();
 
-        for (int index = 0;
-             index < answerButtons.size();
-             index++) {
+        for (
+                int index = 0;
+                index < answerButtons.size();
+                index++
+        ) {
+            RoundedButton button =
+                    answerButtons.get(index);
 
-            JButton button = answerButtons.get(index);
-
-            resetButtonAppearance(button);
+            resetAnswerButton(button);
 
             if (index < answers.size()) {
                 button.setText(answers.get(index));
@@ -265,12 +352,15 @@ public class GamePanel extends JPanel {
         startTimer();
     }
 
-    private void submitAnswer(JButton selectedButton) {
+    private void submitAnswer(
+            RoundedButton selectedButton
+    ) {
         if (answerSubmitted) {
             return;
         }
 
         answerSubmitted = true;
+
         stopTimer();
         disableAnswerButtons();
 
@@ -281,20 +371,37 @@ public class GamePanel extends JPanel {
                 selectedButton.getText();
 
         boolean correct =
-                currentQuestion.isCorrect(selectedAnswer);
+                currentQuestion.isCorrect(
+                        selectedAnswer
+                );
 
         if (correct) {
             score++;
-            scoreLabel.setText("Score: " + score);
 
-            selectedButton.setBackground(CORRECT_COLOR);
+            scoreLabel.setText(
+                    "SCORE: " + score
+            );
+
+            selectedButton.setButtonColors(
+                    Theme.SUCCESS,
+                    Theme.SUCCESS,
+                    Theme.SUCCESS
+            );
+
             selectedButton.setForeground(Color.WHITE);
 
-            feedbackLabel.setText("Correct!");
-            feedbackLabel.setForeground(CORRECT_COLOR);
+            feedbackLabel.setText("CORRECT!");
+            feedbackLabel.setForeground(
+                    Theme.SUCCESS
+            );
 
         } else {
-            selectedButton.setBackground(INCORRECT_COLOR);
+            selectedButton.setButtonColors(
+                    Theme.ERROR,
+                    Theme.ERROR,
+                    Theme.ERROR
+            );
+
             selectedButton.setForeground(Color.WHITE);
 
             highlightCorrectAnswer(
@@ -302,11 +409,13 @@ public class GamePanel extends JPanel {
             );
 
             feedbackLabel.setText(
-                    "Incorrect. Correct answer: "
+                    "Incorrect — correct answer: "
                             + currentQuestion.getCorrectAnswer()
             );
 
-            feedbackLabel.setForeground(INCORRECT_COLOR);
+            feedbackLabel.setForeground(
+                    Theme.ERROR
+            );
         }
 
         moveAfterDelay();
@@ -318,6 +427,7 @@ public class GamePanel extends JPanel {
         }
 
         answerSubmitted = true;
+
         disableAnswerButtons();
 
         Question currentQuestion =
@@ -327,14 +437,16 @@ public class GamePanel extends JPanel {
                 currentQuestion.getCorrectAnswer()
         );
 
-        timerLabel.setText("Time expired");
+        timerLabel.setText("TIME EXPIRED");
 
         feedbackLabel.setText(
-                "Time expired. Correct answer: "
+                "Time expired — correct answer: "
                         + currentQuestion.getCorrectAnswer()
         );
 
-        feedbackLabel.setForeground(INCORRECT_COLOR);
+        feedbackLabel.setForeground(
+                Theme.ERROR
+        );
 
         moveAfterDelay();
     }
@@ -342,9 +454,14 @@ public class GamePanel extends JPanel {
     private void highlightCorrectAnswer(
             String correctAnswer
     ) {
-        for (JButton button : answerButtons) {
+        for (RoundedButton button : answerButtons) {
             if (button.getText().equals(correctAnswer)) {
-                button.setBackground(CORRECT_COLOR);
+                button.setButtonColors(
+                        Theme.SUCCESS,
+                        Theme.SUCCESS,
+                        Theme.SUCCESS
+                );
+
                 button.setForeground(Color.WHITE);
             }
         }
@@ -355,6 +472,7 @@ public class GamePanel extends JPanel {
                 1800,
                 event -> {
                     ((Timer) event.getSource()).stop();
+
                     currentQuestionIndex++;
                     displayQuestion();
                 }
@@ -390,10 +508,14 @@ public class GamePanel extends JPanel {
 
     private void updateTimerDisplay() {
         timerLabel.setText(
-                "Time: " + secondsRemaining + "s"
+                "TIME: "
+                        + secondsRemaining
+                        + "s"
         );
 
-        timerProgressBar.setValue(secondsRemaining);
+        timerProgressBar.setValue(
+                secondsRemaining
+        );
 
         timerProgressBar.setString(
                 secondsRemaining + " seconds"
@@ -410,31 +532,36 @@ public class GamePanel extends JPanel {
 
         if (percentageRemaining > 0.50) {
             timerProgressBar.setForeground(
-                    TIMER_SAFE_COLOR
+                    Theme.SUCCESS
             );
 
         } else if (percentageRemaining > 0.25) {
             timerProgressBar.setForeground(
-                    TIMER_WARNING_COLOR
+                    Theme.WARNING
             );
 
         } else {
             timerProgressBar.setForeground(
-                    TIMER_DANGER_COLOR
+                    Theme.ERROR
             );
         }
     }
 
-    private void resetButtonAppearance(
-            JButton button
+    private void resetAnswerButton(
+            RoundedButton button
     ) {
-        button.setBackground(DEFAULT_BUTTON_COLOR);
-        button.setForeground(Color.BLACK);
+        button.setButtonColors(
+                Theme.PANEL_LIGHT,
+                Theme.PRIMARY,
+                Theme.ACCENT
+        );
+
+        button.setForeground(Theme.TEXT);
         button.setEnabled(true);
     }
 
     private void disableAnswerButtons() {
-        for (JButton button : answerButtons) {
+        for (RoundedButton button : answerButtons) {
             button.setEnabled(false);
         }
     }
@@ -469,6 +596,9 @@ public class GamePanel extends JPanel {
                         %s
                     </div>
                 </html>
-                """.formatted(width, escapedText);
+                """.formatted(
+                width,
+                escapedText
+        );
     }
 }
