@@ -40,19 +40,6 @@ public class RoundedButton extends JButton {
         setForeground(foreground);
     }
 
-    public RoundedButton(
-            String text,
-            Color normalColor,
-            Color hoverColor,
-            Color foregroundColor
-    ) {
-        super(text);
-        this.normalColor = normalColor;
-        this.hoverColor = hoverColor;
-        initialize();
-        setForeground(foregroundColor);
-    }
-
     private void initialize() {
         setFont(Theme.BUTTON_FONT);
         setForeground(Color.WHITE);

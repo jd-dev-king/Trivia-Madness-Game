@@ -9,8 +9,6 @@ public final class Theme {
     public static final Color BACKGROUND = new Color(15, 23, 42);
     public static final Color BACKGROUND_COLOR = BACKGROUND;
     public static final Color PANEL_BACKGROUND = new Color(30, 41, 59);
-    public static final Color PANEL = PANEL_BACKGROUND;
-    public static final Color PANEL_LIGHT = new Color(51, 65, 85);
     public static final Color CARD_BACKGROUND = PANEL_BACKGROUND;
     public static final Color SURFACE = PANEL_BACKGROUND;
     public static final Color PRIMARY = new Color(124, 58, 237);
@@ -24,7 +22,6 @@ public final class Theme {
     public static final Color ERROR = new Color(239, 68, 68);
     public static final Color WARNING = new Color(245, 158, 11);
     public static final Color TEXT_PRIMARY = new Color(248, 250, 252);
-    public static final Color TEXT = TEXT_PRIMARY;
     public static final Color TEXT_SECONDARY = new Color(203, 213, 225);
     public static final Color MUTED_TEXT = new Color(148, 163, 184);
     public static final Color BORDER = new Color(71, 85, 105);
