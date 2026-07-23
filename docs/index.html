@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<<<<<<< HEAD
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trivia Madness is a Java Swing trivia game with Open Trivia DB integration, SQLite score persistence, and a polished desktop GUI.">
+  <title>Trivia Madness Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">Trivia Madness</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#architecture">Architecture</a>
+      <a class="nav-button" href="https://github.com/jd-dev-king/Trivia-Madness-Game">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">JAVA DESKTOP APPLICATION</p>
+        <h1>Fast questions.<br><span>Persistent scores.</span><br>Serious trivia.</h1>
+        <p class="hero-text">
+          A modern Java Swing trivia game powered by Open Trivia DB, with configurable gameplay,
+          a visual countdown timer, and an SQLite leaderboard that preserves results between sessions.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/jd-dev-king/Trivia-Madness-Game">View Repository</a>
+          <a class="button secondary" href="#screens">View Screens</a>
+        </div>
+        <div class="tech-row">
+          <span>Java</span><span>Swing</span><span>SQLite</span><span>Maven</span><span>REST API</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="glow"></div>
+        <img src="images/trivia-hero.png" alt="Trivia Madness game hero artwork">
+      </div>
+    </section>
+
+    <section class="stats">
+      <article><strong>17+</strong><span>Trivia categories</span></article>
+      <article><strong>5–30</strong><span>Questions per game</span></article>
+      <article><strong>10–60s</strong><span>Timer control</span></article>
+      <article><strong>SQLite</strong><span>Persistent scoring</span></article>
+    </section>
+
+    <section id="features" class="section">
+      <p class="eyebrow">FEATURE SET</p>
+      <h2>Built as a complete desktop experience</h2>
+      <div class="feature-grid">
+        <article class="card">
+          <span class="icon">01</span>
+          <h3>Live trivia API</h3>
+          <p>Downloads real multiple-choice questions from Open Trivia DB and safely decodes special characters.</p>
+        </article>
+        <article class="card">
+          <span class="icon">02</span>
+          <h3>Configurable gameplay</h3>
+          <p>Players select multiple categories, difficulty, question count, and time allowed for every question.</p>
+        </article>
+        <article class="card">
+          <span class="icon">03</span>
+          <h3>Visual feedback</h3>
+          <p>Rounded answer controls, color-coded results, and a timer bar that changes as time runs out.</p>
+        </article>
+        <article class="card">
+          <span class="icon">04</span>
+          <h3>Persistent leaderboard</h3>
+          <p>SQLite stores player scores, percentages, categories, difficulty, and completion timestamps.</p>
+        </article>
+        <article class="card">
+          <span class="icon">05</span>
+          <h3>Reliable desktop workflow</h3>
+          <p>Background API loading keeps the interface responsive, while errors are surfaced through clear dialogs.</p>
+        </article>
+        <article class="card">
+          <span class="icon">06</span>
+          <h3>Reusable UI system</h3>
+          <p>A centralized theme and reusable rounded Swing components create a consistent visual identity.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="screens" class="section">
+      <p class="eyebrow">APPLICATION TOUR</p>
+      <h2>From setup to final score</h2>
+      <div class="gallery">
+        <figure><img src="images/welcome-screen.png" alt="Welcome screen"><figcaption>Hero welcome screen</figcaption></figure>
+        <figure><img src="images/category-selection.png" alt="Category selection"><figcaption>Multi-category setup</figcaption></figure>
+        <figure><img src="images/question-screen.png" alt="Question screen"><figcaption>Timed gameplay</figcaption></figure>
+        <figure><img src="images/results-screen.png" alt="Results screen"><figcaption>Performance summary</figcaption></figure>
+        <figure><img src="images/leaderboard.png" alt="Leaderboard"><figcaption>Persistent leaderboard</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="architecture" class="section architecture">
+      <div>
+        <p class="eyebrow">ARCHITECTURE</p>
+        <h2>Clear separation of responsibilities</h2>
+        <p>
+          The project separates API communication, database access, data models, and Swing screens.
+          This keeps the application easier to test, extend, and maintain.
+        </p>
+      </div>
+      <div class="architecture-list">
+        <div><strong>API</strong><span>HTTP requests and JSON decoding</span></div>
+        <div><strong>Database</strong><span>SQLite initialization and score queries</span></div>
+        <div><strong>Models</strong><span>Questions, categories, settings, and scores</span></div>
+        <div><strong>UI</strong><span>Card-based Swing screens and themed controls</span></div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <p class="eyebrow">SOURCE CODE</p>
+      <h2>Explore the complete Java project</h2>
+      <p>Review the architecture, run the game locally, or use the project as a foundation for your own desktop application.</p>
+      <a class="button primary" href="https://github.com/jd-dev-king/Trivia-Madness-Game">Open on GitHub</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>Trivia Madness Game</span>
+    <span>Built by Jeremiah Lupton</span>
+  </footer>
+=======
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Trivia Madness Web Edition v2.0"
+  >
+
+  <title>Trivia Madness v2.0</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="site-header">
+      <button
+        class="brand"
+        id="brandHome"
+        type="button"
+        aria-label="Return to Trivia Madness home"
+      >
+        <span class="brand-mark">
+          TM
+        </span>
+
+        <span>
+          <strong>Trivia Madness</strong>
+          <small>Web Edition v2.0</small>
+        </span>
+      </button>
+
+      <button
+        id="soundToggle"
+        class="icon-button"
+        type="button"
+        aria-pressed="true"
+      >
+        Sound: On
+      </button>
+    </header>
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main>
+
+      <!-- ===================================================
+           WELCOME SCREEN
+           =================================================== -->
+
+      <section
+        id="welcomeScreen"
+        class="screen active"
+      >
+        <div class="hero-grid">
+
+  <!-- ===================================================
+       HERO COPY
+       =================================================== -->
+
+  <div class="hero-copy">
+    <span class="eyebrow">
+      Desktop + Web Trivia Experience
+    </span>
+
+    <h1>
+      Test your knowledge. Challenge your friends. Dominate the leaderboard.
+    </h1>
+
+    <p class="hero-description">
+      Experience a fast-paced trivia challenge built for solo players
+      and local multiplayer competition. Choose your category,
+      difficulty, question count, and timer before entering the arena. 
+      Select your fate below and prepare for trivia madness🎮!
+    </p>
+
+    <div class="hero-actions">  
+      <button
+        class="button primary hero-button"
+        id="singlePlayerButton"
+        type="button"
+      >
+        <span class="button-icon" aria-hidden="true">
+          ▶
+        </span>
+
+        <span class="button-content">
+          <strong>Solo Player</strong>
+          <small>Start an individual challenge</small>
+        </span>
+      </button>
+
+      <button
+        class="button secondary hero-button"
+        id="multiplayerButton"
+        type="button"
+      >
+        <span class="button-icon" aria-hidden="true">
+          ◉
+        </span>
+
+        <span class="button-content">
+          <strong>Local Multiplayer</strong>
+          <small>Compete with 2–4 players</small>
+        </span>
+      </button>
+    </div>
+
+    <div
+      class="feature-pills"
+      aria-label="Game features"
+    >
+      <span>
+        <strong>Timed</strong>
+        questions
+      </span>
+
+      <span>
+        <strong>2–4</strong>
+        local players
+      </span>
+
+      <span>
+        <strong>Live</strong>
+        scoring
+      </span>
+
+      <span>
+        <strong>Saved</strong>
+        game history
+      </span>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       HERO VISUAL
+       =================================================== -->
+
+  <div class="hero-visual card">
+    <img
+      src="images/trivia-hero.png"
+      alt="Trivia Madness futuristic trivia game artwork"
+      loading="eager"
+      onerror="
+        this.hidden = true;
+        this.nextElementSibling.hidden = false;
+      "
+    >
+
+    <div
+      class="hero-visual-overlay"
+      aria-hidden="true"
+    >
+      <div class="hero-status">
+        <span class="hero-status-dot"></span>
+        <span>Trivia system online</span>
+      </div>
+
+      <div class="hero-visual-title">
+        <span>Trivia Madness</span>
+        <strong>Web Edition v2.0</strong>
+      </div>
+    </div>
+
+    <div
+      class="image-placeholder"
+      hidden
+    >
+      <strong>
+        Trivia Madness
+      </strong>
+
+      <span>
+        Add trivia-hero.png inside the docs/images folder.
+      </span>
+    </div>
+  </div>
+
+</div>
+
+
+        <section
+          class="stats-grid"
+          aria-label="Saved local game statistics"
+        >
+          <button
+            class="stat-card clickable-stat"
+            id="openSoloHistory"
+            type="button"
+          >
+            <span>Solo high score</span>
+
+            <strong id="savedHighScore">
+              0
+            </strong>
+
+            <small>
+              View solo history
+            </small>
+          </button>
+
+          <button
+            class="stat-card clickable-stat"
+            id="openMultiplayerHistory"
+            type="button"
+          >
+            <span>Multiplayer matches</span>
+
+            <strong id="multiplayerMatches">
+              0
+            </strong>
+
+            <small>
+              View match history
+            </small>
+          </button>
+
+          <article class="stat-card">
+            <span>Best accuracy</span>
+
+            <strong id="bestAccuracy">
+              0%
+            </strong>
+          </article>
+        </section>
+      </section>
+
+      <!-- ===================================================
+           GAME SETUP SCREEN
+           =================================================== -->
+
+      <section
+        id="setupScreen"
+        class="screen"
+      >
+        <div class="section-heading">
+          <div>
+            <span
+              class="eyebrow"
+              id="setupModeLabel"
+            >
+              Solo Player
+            </span>
+
+            <h2>
+              Set up your game
+            </h2>
+          </div>
+
+          <button
+            class="text-button"
+            id="backToWelcome"
+            type="button"
+          >
+            Back
+          </button>
+        </div>
+
+        <form
+          id="gameSetupForm"
+          class="setup-layout"
+        >
+
+          <!-- Player setup -->
+
+          <section class="card form-card">
+            <h3 id="playerSectionTitle">
+              Player
+            </h3>
+
+            <div id="singlePlayerFields">
+              <label>
+                Player name
+
+                <input
+                  id="singlePlayerName"
+                  type="text"
+                  maxlength="20"
+                  placeholder="Enter your name"
+                  value="Player 1"
+                >
+              </label>
+            </div>
+
+            <div
+              id="multiplayerFields"
+              hidden
+            >
+              <label>
+                Number of players
+
+                <select id="playerCount">
+                  <option value="2">
+                    2 players
+                  </option>
+
+                  <option value="3">
+                    3 players
+                  </option>
+
+                  <option value="4">
+                    4 players
+                  </option>
+                </select>
+              </label>
+
+              <div
+                id="playerNameFields"
+                class="player-name-grid"
+              ></div>
+            </div>
+          </section>
+
+          <!-- Game settings -->
+
+          <section class="card form-card">
+            <h3>
+              Game settings
+            </h3>
+
+            <div class="form-grid">
+              <label>
+                Category
+
+                <select id="categorySelect">
+                  <option value="">
+                    Loading categories…
+                  </option>
+                </select>
+              </label>
+
+              <label>
+                Difficulty
+
+                <select id="difficultySelect">
+                  <option value="">
+                    Mixed
+                  </option>
+
+                  <option value="easy">
+                    Easy
+                  </option>
+
+                  <option value="medium">
+                    Medium
+                  </option>
+
+                  <option value="hard">
+                    Hard
+                  </option>
+                </select>
+              </label>
+
+              <label>
+                <span id="questionCountLabel">
+                  Number of questions
+                </span>
+
+                <select id="questionCountSelect">
+                  <option value="5">
+                    5
+                  </option>
+
+                  <option
+                    value="10"
+                    selected
+                  >
+                    10
+                  </option>
+
+                  <option value="15">
+                    15
+                  </option>
+                </select>
+              </label>
+
+              <label>
+                Time per question
+
+                <select id="timerSelect">
+                  <option value="10">
+                    10 seconds
+                  </option>
+
+                  <option
+                    value="15"
+                    selected
+                  >
+                    15 seconds
+                  </option>
+
+                  <option value="20">
+                    20 seconds
+                  </option>
+
+                  <option value="30">
+                    30 seconds
+                  </option>
+                </select>
+              </label>
+            </div>
+
+            <div class="scoring-note">
+              <strong>
+                Scoring:
+              </strong>
+
+              100 points for a correct answer plus up to
+              50 speed-bonus points.
+            </div>
+
+            <button
+              class="button primary full-width"
+              type="submit"
+            >
+              Start Game
+            </button>
+
+            <p
+              id="setupError"
+              class="error-message"
+              role="alert"
+            ></p>
+          </section>
+        </form>
+      </section>
+
+      <!-- ===================================================
+           LOADING SCREEN
+           =================================================== -->
+
+      <section
+        id="loadingScreen"
+        class="screen centered-screen"
+      >
+        <div class="loading-card card">
+          <div
+            class="spinner"
+            aria-hidden="true"
+          ></div>
+
+          <h2>
+            Loading questions
+          </h2>
+
+          <p>
+            Preparing your Trivia Madness challenge…
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           MULTIPLAYER HANDOFF SCREEN
+           =================================================== -->
+
+      <section
+        id="handoffScreen"
+        class="screen centered-screen"
+      >
+        <div class="handoff-card card">
+          <span class="eyebrow">
+            Pass the device
+          </span>
+
+          <h2 id="handoffPlayerName">
+            Next Player
+          </h2>
+
+          <p>
+            Your question begins when the countdown reaches zero.
+          </p>
+
+          <strong
+            id="handoffCountdown"
+            class="handoff-countdown"
+          >
+            3
+          </strong>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           GAME SCREEN
+           =================================================== -->
+
+      <section
+        id="gameScreen"
+        class="screen"
+      >
+        <div class="game-topbar">
+          <div>
+            <span
+              class="eyebrow"
+              id="currentPlayerLabel"
+            >
+              Player
+            </span>
+
+            <h2 id="currentPlayerName">
+              Player 1
+            </h2>
+          </div>
+
+          <div class="question-meta">
+            <span id="questionProgress">
+              Question 1 of 10
+            </span>
+
+            <span
+              id="difficultyBadge"
+              class="badge"
+            >
+              Mixed
+            </span>
+          </div>
+        </div>
+
+        <div
+          id="scoreboard"
+          class="scoreboard"
+        ></div>
+
+        <!-- Futuristic HUD -->
+
+        <div class="hud-status">
+          <span class="hud-dot"></span>
+
+          <span>
+            LIVE TRIVIA SESSION
+          </span>
+
+          <span id="hudMode">
+            SOLO MODE
+          </span>
+        </div>
+
+        <!-- Question area -->
+
+        <section class="question-card card">
+          <div class="timer-row">
+            <span>
+              Time remaining
+            </span>
+
+            <strong id="timerText">
+              15
+            </strong>
+          </div>
+
+          <div
+            class="timer-track"
+            aria-hidden="true"
+          >
+            <div
+              id="timerBar"
+              class="timer-bar"
+            ></div>
+          </div>
+
+          <p
+            id="categoryLabel"
+            class="question-category"
+          ></p>
+
+          <h3 id="questionText">
+            Question text
+          </h3>
+
+          <div
+            id="answerGrid"
+            class="answer-grid"
+          ></div>
+
+          <div
+            id="feedbackPanel"
+            class="feedback-panel"
+            hidden
+          >
+            <strong id="feedbackTitle"></strong>
+
+            <p id="feedbackMessage"></p>
+
+            <button
+              id="nextQuestionButton"
+              class="button primary"
+              type="button"
+            >
+              Next Question
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <!-- ===================================================
+           RESULTS SCREEN
+           =================================================== -->
+
+      <section
+        id="resultsScreen"
+        class="screen"
+      >
+        <div class="results-card card">
+          <span class="eyebrow">
+            Game complete
+          </span>
+
+          <h2 id="resultsTitle">
+            Final Score
+          </h2>
+
+          <p id="resultsSubtitle"></p>
+
+          <div
+            id="winnerBanner"
+            class="winner-banner"
+            hidden
+          ></div>
+
+          <div
+            id="singlePlayerHeadline"
+            class="solo-result-headline"
+            hidden
+          ></div>
+
+          <div
+            id="finalStandings"
+            class="final-standings"
+          ></div>
+
+          <div
+            id="singlePlayerResultStats"
+            class="result-stats"
+          ></div>
+
+          <div class="results-actions">
+            <button
+              id="rematchButton"
+              class="button primary"
+              type="button"
+            >
+              Rematch
+            </button>
+
+            <button
+              id="newGameButton"
+              class="button secondary"
+              type="button"
+            >
+              New Game
+            </button>
+
+            <button
+              id="viewHistoryButton"
+              class="button secondary"
+              type="button"
+            >
+              View History
+            </button>
+
+            <button
+              id="resetScoresButton"
+              class="button danger"
+              type="button"
+            >
+              Reset Local Stats
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>
+          Built by
+
+          <a
+            href="https://jeremiahlupton.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Jeremiah Lupton
+          </a>
+        </p>
+
+        <span class="footer-divider">
+          •
+        </span>
+
+        <p>
+          Powered by
+
+          <a
+            href="https://opentdb.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Trivia Database
+          </a>
+        </p>
+      </div>
+
+      <p class="footer-version">
+        Trivia Madness Web Edition v2.0
+      </p>
+    </footer>
+  </div>
+
+  <!-- =======================================================
+       HISTORY DIALOG
+       ======================================================= -->
+
+  <dialog id="historyDialog">
+    <div class="dialog-card">
+      <div class="dialog-heading">
+        <div>
+          <span class="eyebrow">
+            Local browser data
+          </span>
+
+          <h2 id="historyDialogTitle">
+            History
+          </h2>
+        </div>
+
+        <button
+          id="closeHistoryButton"
+          class="text-button"
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+
+      <p
+        id="historyDialogDescription"
+        class="dialog-description"
+      ></p>
+
+      <div
+        id="historyList"
+        class="history-list"
+      ></div>
+
+      <div class="dialog-actions">
+        <button
+          id="clearHistoryButton"
+          class="button danger"
+          type="button"
+        >
+          Clear This History
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- =======================================================
+       RESET CONFIRMATION DIALOG
+       ======================================================= -->
+
+  <dialog id="confirmDialog">
+    <div class="dialog-card">
+      <h2>
+        Reset all local statistics?
+      </h2>
+
+      <p>
+        This clears solo scores, multiplayer matches,
+        high scores, and accuracy data.
+      </p>
+
+      <div class="dialog-actions">
+        <button
+          id="cancelResetButton"
+          class="button secondary"
+          type="button"
+        >
+          Cancel
+        </button>
+
+        <button
+          id="confirmResetButton"
+          class="button danger"
+          type="button"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </dialog>
+>>>>>>> dcb18f5 (Update responsive hero layout and site styling)
+
+  <script src="script.js"></script>
+</body>
+</html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> dcb18f5 (Update responsive hero layout and site styling)
