@@ -288,7 +288,10 @@ Built by [Jeremiah Lupton](https://jeremiahlupton.com)
 
 Trivia questions are powered by the [Open Trivia Database](https://opentdb.com).
 
+
 ## License
 
-This project is intended for educational, portfolio, and demonstration purposes.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+Trivia questions are provided by the Open Trivia Database and remain subject to the terms and policies of that service.
 
