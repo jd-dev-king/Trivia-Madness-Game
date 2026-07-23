@@ -267,8 +267,6 @@ Planned improvements may include:
 
 ## Screenshots
 
-
-```markdown
 ![Trivia Madness Home Screen](docs/images/trivia-home-screen.png)
 
 ![Trivia Madness Gameplay](docs/images/trivia-game-screen.png)
@@ -276,7 +274,7 @@ Planned improvements may include:
 ![Trivia Madness Muilt-Player Countdown](docs/images/trivia-mulit-player-countdown-screen.png)
 
 ![Trivia Madness Results](docs/images/trivia-results-screen.png)
-```
+
 
 ## Repository
 
