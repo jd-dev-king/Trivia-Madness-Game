@@ -1,204 +1,296 @@
-# Trivia Madness Game
+# Trivia Madness Web Edition v2.0
 
-A Java desktop trivia game built with Swing, SQLite, Maven, and the Open Trivia Database API.
 
-The application allows players to select multiple categories, configure game difficulty, choose the number of questions, answer timed trivia questions, and save their results to a persistent local leaderboard.
+Trivia Madness is a multi-platform trivia game featuring a Java Swing desktop application and a responsive web edition. Players can test their knowledge in solo mode or compete with friends using local multiplayer.
 
-## Features
+The project combines a desktop game experience with a browser-based version powered by the Open Trivia Database.
 
-* Java Swing graphical user interface
-* Player-name entry
-* Multi-category selection
+## Project Versions
+
+### Desktop Edition v1.0
+
+The original Trivia Madness desktop application was developed with Java Swing and SQLite.
+
+Desktop features include:
+
+* Java Swing graphical interface
+* Category and difficulty selection
+* Timed trivia questions
+* Open Trivia Database integration
+* Persistent local leaderboard
+* SQLite score storage
+* Player settings
+* Countdown timer
+* Score tracking
+* Restart and replay functionality
+
+### Web Edition v2.0
+
+The web edition provides a responsive browser-based trivia experience that can be accessed through GitHub Pages.
+
+Web features include:
+
+* Solo player mode
+* Local multiplayer for 2–4 players
+* Category selection
 * Easy, medium, hard, or mixed difficulty
-* Configurable question count
-* Configurable countdown timer
-* Questions retrieved from Open Trivia DB
-* Randomized answer order
-* Visual timer progress bar
-* Correct and incorrect answer feedback
-* Automatic score calculation
-* SQLite score persistence
-* Saved-score leaderboard
-* Score reset confirmation
-* Performance feedback after each game
-* Safe application exit confirmation
-* API and database error handling
+* Configurable question counts
+* Configurable question timer
+* Speed-based bonus scoring
+* Multiplayer device handoff countdown
+* Solo high-score tracking
+* Multiplayer match history
+* Best accuracy tracking
+* Local browser storage
+* Sound controls
+* Responsive desktop, tablet, and mobile layout
+* Futuristic animated interface
+* Pulsating hero artwork
+* Live trivia session HUD
+* Open Trivia Database integration
 
-## Screenshots
+## Live Web Application
 
-### Welcome Screen
+Play Trivia Madness Web Edition:
 
-![Trivia Challenge welcome screen](docs/images/welcome-screen.png)
+[Open Trivia Madness](https://jd-dev-king.github.io/Trivia-Madness-Game/)
 
-### Category Selection
+## Technologies Used
 
-![Trivia category selection screen](docs/images/category-selection.png)
-
-### Trivia Question
-
-![Active trivia question and countdown timer](docs/images/question-screen.png)
-
-### Answer Feedback
-
-![Correct and incorrect answer feedback](docs/images/answer-feedback.png)
-
-### Results
-
-![Trivia game results screen](docs/images/results-screen.png)
-
-### Leaderboard
-
-![Saved trivia scores leaderboard](docs/images/leaderboard.png)
-
-## Technologies
+### Desktop Application
 
 * Java
 * Java Swing
 * Maven
 * SQLite
 * JDBC
-* Gson
-* Java HTTP Client
 * Open Trivia Database API
 * IntelliJ IDEA
+
+### Web Application
+
+* HTML5
+* CSS3
+* JavaScript
+* Local Storage
+* Open Trivia Database API
+* GitHub Pages
 
 ## Project Structure
 
 ```text
-TriviaGame
-├── data
-│   └── .gitkeep
-├── docs
-│   └── images
-├── src
-│   └── main
-│       └── java
-│           └── com
-│               └── jeremiah
-│                   └── triviagame
+Trivia-Madness-Game/
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/
+│               └── jeremiah/
+│                   └── triviagame/
 │                       ├── Main.java
-│                       ├── api
-│                       │   └── TriviaApiClient.java
-│                       ├── database
-│                       │   ├── DatabaseManager.java
-│                       │   └── ScoreRepository.java
-│                       ├── model
-│                       │   ├── Category.java
-│                       │   ├── GameSettings.java
-│                       │   ├── Question.java
-│                       │   └── Score.java
-│                       └── ui
-│                           ├── CategoryPanel.java
-│                           ├── GamePanel.java
-│                           ├── LeaderboardPanel.java
-│                           ├── MainFrame.java
-│                           └── WelcomePanel.java
-├── .gitignore
+│                       ├── api/
+│                       ├── database/
+│                       ├── model/
+│                       ├── repository/
+│                       └── ui/
+├── docs/
+│   ├── images/    
+│   │   └── trivia-hero.png
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
 ├── pom.xml
 └── README.md
 ```
 
-## How the Application Works
+## Web Edition Gameplay
 
-1. The player enters a name.
-2. The player selects one or more trivia categories.
-3. The player chooses the difficulty, question count, and timer length.
-4. The application requests questions from Open Trivia DB.
-5. The answers are shuffled before each question is displayed.
-6. The timer counts down while the player chooses an answer.
-7. The application displays immediate visual feedback.
-8. The final score is saved to SQLite.
-9. Previous scores can be viewed or reset from the leaderboard.
+### Solo Mode
 
-## Database
+Solo mode allows one player to complete a trivia session and compare the final score with locally stored results.
 
-The application creates a local SQLite database automatically:
+The game tracks:
 
-```text
-data/trivia_game.db
+* Total score
+* Correct answers
+* Accuracy percentage
+* High score
+* Solo game history
+
+### Local Multiplayer
+
+Local multiplayer supports between two and four players using the same device.
+
+Each player receives a device handoff countdown before their question begins. At the end of the match, the application displays the final rankings and winner.
+
+The game tracks:
+
+* Player scores
+* Correct answers
+* Speed bonuses
+* Match rankings
+* Multiplayer history
+
+## Scoring System
+
+Players earn:
+
+* 100 points for each correct answer
+* Up to 50 additional points based on response speed
+
+Incorrect answers and expired timers do not award points.
+
+## Running the Web Edition Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/jd-dev-king/Trivia-Madness-Game.git
 ```
 
-The database stores:
+Move into the project directory:
 
-* Player name
-* Score
-* Total questions
-* Percentage
-* Selected categories
+```bash
+cd Trivia-Madness-Game
+```
+
+Open the `docs` folder in Visual Studio Code and launch `index.html` using the Live Server extension.
+
+You can also open the file directly in a browser:
+
+```text
+docs/index.html
+```
+
+For the best results, use Live Server because some browser features may behave differently when the page is opened directly from the local file system.
+
+## Running the Desktop Edition
+
+Make sure Java and Maven are installed.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/jd-dev-king/Trivia-Madness-Game.git
+```
+
+Move into the project directory:
+
+```bash
+cd Trivia-Madness-Game
+```
+
+Build the project:
+
+```bash
+mvn clean package
+```
+
+Run the application through IntelliJ IDEA or execute the generated JAR from the `target` folder.
+
+You can also run the project with Maven:
+
+```bash
+mvn exec:java
+```
+
+## Open Trivia Database
+
+Trivia questions and categories are provided by the Open Trivia Database.
+
+The application retrieves question data dynamically based on the selected:
+
+* Category
 * Difficulty
-* Date and time played
+* Number of questions
+* Game mode
 
-The database file is excluded from Git so local player scores are not uploaded to the repository.
+Because the application depends on an external API, an internet connection is required to load new trivia questions.
 
-## Open Trivia DB
+## Local Data Storage
 
-Trivia questions are retrieved from the Open Trivia Database.
+The web edition stores game statistics in the browser using Local Storage.
 
-No API key is required.
+Stored information may include:
 
-The application requests Base64-encoded multiple-choice questions and decodes them before displaying them in the GUI.
+* Solo high score
+* Solo game history
+* Multiplayer match history
+* Best recorded accuracy
+* Sound preference
 
-Internet access is required to begin a new game.
+This information remains on the current browser and device unless the user resets the local statistics or clears browser data.
 
-## Requirements
+The desktop edition stores score information locally using SQLite.
 
-* Java Development Kit
-* Maven
-* Internet connection
-* IntelliJ IDEA or another Java IDE
+## Responsive Design
 
-The project was developed using a modern Java JDK. The Java version configured in `pom.xml` must match an installed JDK.
+The web interface automatically adjusts for:
 
-## Running the Project in IntelliJ
+* Large desktop monitors
+* Laptop screens
+* Tablets
+* Mobile devices
 
-1. Clone or download the repository.
-2. Open IntelliJ IDEA.
-3. Select **Open**.
-4. Open the project folder or its `pom.xml`.
-5. Allow Maven to download the required dependencies.
-6. Confirm that the correct JDK is selected.
-7. Open `Main.java`.
-8. Run `Main.main()`.
+The desktop layout is designed to fit within the available viewport while preserving access to the header, game area, statistics cards, and footer.
 
-## Maven Dependencies
+On smaller screens, the application switches to a vertically stacked layout with natural scrolling for usability.
 
-The project uses:
+## GitHub Pages Deployment
 
-* Gson for JSON parsing
-* SQLite JDBC for database access
+The GitHub Pages site is deployed from the repository's `docs` folder.
 
-Maven downloads both dependencies automatically from the configuration in `pom.xml`.
+The web application files are:
 
-## Error Handling
+```text
+docs/index.html
+docs/style.css
+docs/script.js
+docs/images/trivia-hero.png
+```
 
-The application handles common problems including:
+After changes are committed and pushed to the `main` branch, GitHub Pages automatically rebuilds the live website.
 
-* Missing player name
-* No selected category
-* Internet connection failures
-* Open Trivia DB response errors
-* Empty question responses
-* SQLite save and retrieval errors
-* Accidental score resets
-* Accidental application closure
+## Future Enhancements
 
-## Future Improvements
+Planned improvements may include:
 
-* Dark mode
-* Sound effects
-* Custom application icon
-* Offline fallback questions
-* User profiles
-* Per-category statistics
-* High-score filtering
-* Achievement badges
-* Packaged macOS, Windows, and Linux releases
-* Automated tests
+* Player avatars
+* Online multiplayer
+* Additional sound effects
+* Animated transitions
+* Expanded achievements
+* Category performance analytics
+* Custom question packs
+* Progressive Web App support
+* Additional accessibility settings
+* Difficulty-based leaderboards
+
+## Screenshots
+
+
+```markdown
+![Trivia Madness Home Screen](docs/images/trivia-home-screen.png)
+
+![Trivia Madness Gameplay](docs/images/trivia-game-screen.png)
+
+![Trivia Madness Muilt-Player Countdown](docs/images/trivia-mulit-player-countdown-screen.png)
+
+![Trivia Madness Results](docs/images/trivia-results-screen.png)
+```
+
+## Repository
+
+[View the Trivia Madness source code on GitHub](https://github.com/jd-dev-king/Trivia-Madness-Game)
 
 ## Author
 
-Jeremiah Lupton
+Built by [Jeremiah Lupton](https://jeremiahlupton.com)
 
-## Version
+## Acknowledgments
 
-Version 1.0.0
+Trivia questions are powered by the [Open Trivia Database](https://opentdb.com).
+
+## License
+
+This project is intended for educational, portfolio, and demonstration purposes.
+
