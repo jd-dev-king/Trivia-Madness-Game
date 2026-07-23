@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trivia Madness Web Edition v2.0 — solo and local multiplayer trivia powered by Open Trivia DB.">
+  <title>Trivia Madness v2.0</title>
+  <link rel="stylesheet" href="style.css?v=2.0.3">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <button class="brand" id="brandHome" type="button" aria-label="Return to Trivia Madness home">
+        <span class="brand-mark">TM</span>
+        <span><strong>Trivia Madness</strong><small>Web Edition v2.0</small></span>
+      </button>
+      <button id="soundToggle" class="icon-button" type="button" aria-pressed="true">Sound: On</button>
+    </header>
+
+    <main>
+      <section id="welcomeScreen" class="screen active">
+
+<div class="hero-grid">
+
+  <!-- ===================================================
+       HERO COPY
+       =================================================== -->
+
+  <div class="hero-copy">
+    <span class="eyebrow">
+      Desktop + Web Trivia Experience
+    </span>
+
+    <h1>
+      Test your knowledge. Challenge your friends. Dominate the leaderboard.
+    </h1>
+
+    <p class="hero-description">
+      Experience a fast-paced trivia challenge built for solo players
+      and local multiplayer competition. Choose your category,
+      difficulty, question count, and timer before entering the arena. Choose your fate and be ready for trivia madness!
+    </p>
+
+    <div
+      class="feature-pills"
+      aria-label="Game features"
+    >
+      <span>
+        <strong>Timed</strong>
+        questions
+      </span>
+
+      <span>
+        <strong>1–4</strong>
+        local players
+      </span>
+
+      <span>
+        <strong>Live</strong>
+        scoring
+      </span>
+
+      <span>
+        <strong>Saved</strong>
+        game history
+      </span>
+    </div>
+
+
+    <div class="hero-actions">
+      <button
+        class="button primary hero-button"
+        id="singlePlayerButton"
+        type="button"
+      >
+        <span class="button-icon" aria-hidden="true">
+          ▶
+        </span>
+
+        <span class="button-content">
+          <strong>Solo Player</strong>
+          <small>Start an individual challenge</small>
+        </span>
+      </button>
+
+      <button
+        class="button secondary hero-button"
+        id="multiplayerButton"
+        type="button"
+      >
+        <span class="button-icon" aria-hidden="true">
+          ◉
+        </span>
+
+        <span class="button-content">
+          <strong>Local Multiplayer</strong>
+          <small>Compete with 2–4 players</small>
+        </span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ===================================================
+       HERO VISUAL
+       =================================================== -->
+
+  <div class="hero-visual card">
+    <img
+      src="images/trivia-hero.png"
+      alt="Trivia Madness futuristic trivia game artwork"
+      loading="eager"
+      onerror="
+        this.hidden = true;
+        this.nextElementSibling.hidden = false;
+      "
+    >
+
+    <div
+      class="hero-visual-overlay"
+      aria-hidden="true"
+    >
+      <div class="hero-status">
+        <span class="hero-status-dot"></span>
+        <span>Trivia system online</span>
+      </div>
+
+      <div class="hero-visual-title">
+        <span>Trivia Madness</span>
+        <strong>Web Edition v2.0</strong>
+      </div>
+    </div>
+
+    <div
+      class="image-placeholder"
+      hidden
+    >
+      <strong>
+        Trivia Madness
+      </strong>
+
+      <span>
+        Add trivia-hero.png inside the docs/images folder.
+      </span>
+    </div>
+  </div>
+
+</div>
+
+
+        <section class="stats-grid" aria-label="Saved local game statistics">
+          <button class="stat-card clickable-stat" id="openSoloHistory" type="button"><span>Solo high score</span><strong id="savedHighScore">0</strong><small>View solo history</small></button>
+          <button class="stat-card clickable-stat" id="openMultiplayerHistory" type="button"><span>Multiplayer matches</span><strong id="multiplayerMatches">0</strong><small>View match history</small></button>
+          <article class="stat-card"><span>Best accuracy</span><strong id="bestAccuracy">0%</strong><small>Best local result</small></article>
+        </section>
+      </section>
+
+      <section id="setupScreen" class="screen">
+        <div class="section-heading"><div><span class="eyebrow" id="setupModeLabel">Solo Player</span><h2>Set up your game</h2></div><button class="text-button" id="backToWelcome" type="button">Back</button></div>
+        <form id="gameSetupForm" class="setup-layout">
+          <section class="card form-card">
+            <h3 id="playerSectionTitle">Player</h3>
+            <div id="singlePlayerFields"><label>Player name<input id="singlePlayerName" type="text" maxlength="20" placeholder="Enter your name" value="Player 1"></label></div>
+            <div id="multiplayerFields" hidden><label>Number of players<select id="playerCount"><option value="2">2 players</option><option value="3">3 players</option><option value="4">4 players</option></select></label><div id="playerNameFields" class="player-name-grid"></div></div>
+          </section>
+          <section class="card form-card">
+            <h3>Game settings</h3>
+            <div class="form-grid">
+              <label>Category<select id="categorySelect"><option value="">Loading categories…</option></select></label>
+              <label>Difficulty<select id="difficultySelect"><option value="">Mixed</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
+              <label><span id="questionCountLabel">Number of questions</span><select id="questionCountSelect"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option></select></label>
+              <label>Time per question<select id="timerSelect"><option value="10">10 seconds</option><option value="15" selected>15 seconds</option><option value="20">20 seconds</option><option value="30">30 seconds</option></select></label>
+            </div>
+            <div class="scoring-note"><strong>Scoring:</strong> 100 points for a correct answer plus up to 50 speed-bonus points.</div>
+            <button class="button primary full-width" type="submit">Start Game</button><p id="setupError" class="error-message" role="alert"></p>
+          </section>
+        </form>
+      </section>
+
+      <section id="loadingScreen" class="screen centered-screen"><div class="loading-card card"><div class="spinner" aria-hidden="true"></div><h2>Loading questions</h2><p>Preparing your Trivia Madness challenge…</p></div></section>
+      <section id="handoffScreen" class="screen centered-screen"><div class="handoff-card card"><span class="eyebrow">Pass the device</span><h2 id="handoffPlayerName">Next Player</h2><p>Your question begins when the countdown reaches zero.</p><strong id="handoffCountdown" class="handoff-countdown">3</strong></div></section>
+
+      <section id="gameScreen" class="screen">
+        <div class="game-topbar"><div><span class="eyebrow" id="currentPlayerLabel">Player</span><h2 id="currentPlayerName">Player 1</h2></div><div class="question-meta"><span id="questionProgress">Question 1 of 10</span><span id="difficultyBadge" class="badge">Mixed</span></div></div>
+        <div id="scoreboard" class="scoreboard"></div>
+        <div class="hud-status"><span class="hud-dot"></span><span>LIVE TRIVIA SESSION</span><span id="hudMode">SOLO MODE</span></div>
+        <section class="question-card card">
+          <div class="timer-row"><span>Time remaining</span><strong id="timerText">15</strong></div><div class="timer-track" aria-hidden="true"><div id="timerBar" class="timer-bar"></div></div>
+          <p id="categoryLabel" class="question-category"></p><h3 id="questionText">Question text</h3><div id="answerGrid" class="answer-grid"></div>
+          <div id="feedbackPanel" class="feedback-panel" hidden><strong id="feedbackTitle"></strong><p id="feedbackMessage"></p><button id="nextQuestionButton" class="button primary" type="button">Next Question</button></div>
+        </section>
+      </section>
+
+      <section id="resultsScreen" class="screen"><div class="results-card card"><span class="eyebrow">Game complete</span><h2 id="resultsTitle">Final Score</h2><p id="resultsSubtitle"></p><div id="winnerBanner" class="winner-banner" hidden></div><div id="singlePlayerHeadline" class="solo-result-headline" hidden></div><div id="finalStandings" class="final-standings"></div><div id="singlePlayerResultStats" class="result-stats"></div><div class="results-actions"><button id="rematchButton" class="button primary" type="button">Rematch</button><button id="newGameButton" class="button secondary" type="button">New Game</button><button id="viewHistoryButton" class="button secondary" type="button">View History</button><button id="resetScoresButton" class="button danger" type="button">Reset Local Stats</button></div></div></section>
+    </main>
+
+    <footer class="site-footer"><div class="footer-content"><p>Built by <a href="https://jeremiahlupton.com" target="_blank" rel="noopener noreferrer">Jeremiah Lupton</a></p><span class="footer-divider">•</span><p>Powered by <a href="https://opentdb.com" target="_blank" rel="noopener noreferrer">Open Trivia Database</a></p></div><p class="footer-version">Trivia Madness Web Edition v2.0</p></footer>
+  </div>
+
+  <dialog id="historyDialog"><div class="dialog-card"><div class="dialog-heading"><div><span class="eyebrow">Local browser data</span><h2 id="historyDialogTitle">History</h2></div><button id="closeHistoryButton" class="text-button" type="button">Close</button></div><p id="historyDialogDescription" class="dialog-description"></p><div id="historyList" class="history-list"></div><div class="dialog-actions"><button id="clearHistoryButton" class="button danger" type="button">Clear This History</button></div></div></dialog>
+  <dialog id="confirmDialog"><div class="dialog-card"><h2>Reset all local statistics?</h2><p>This clears solo scores, multiplayer matches, high scores, and accuracy data.</p><div class="dialog-actions"><button id="cancelResetButton" class="button secondary" type="button">Cancel</button><button id="confirmResetButton" class="button danger" type="button">Reset</button></div></div></dialog>
+  <script src="script.js?v=2.0.3"></script>
+</body>
+</html>
